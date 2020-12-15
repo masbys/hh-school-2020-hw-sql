@@ -1,13 +1,14 @@
+--1. Создание таблиц
 DROP TABLE IF EXISTS user_account, area, resume, employer, vacancy, response;
 
 CREATE TABLE IF NOT EXISTS user_account
 (
     user_account_id      SERIAL PRIMARY KEY,
-    last_name            VARCHAR(30) NOT NULL,
-    first_name           VARCHAR(30) NOT NULL,
-    email                VARCHAR(30) NOT NULL,
-    password             VARCHAR(30) NOT NULL,
-    phone_number         VARCHAR(30) NOT NULL,
+    last_name            VARCHAR(40) NOT NULL,
+    first_name           VARCHAR(40) NOT NULL,
+    email                VARCHAR(40) NOT NULL,
+    password             VARCHAR(40) NOT NULL,
+    phone_number         VARCHAR(40) NOT NULL,
     date_of_registration TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     UNIQUE (email, phone_number),
     CHECK ( email != '' AND phone_number != '' )
@@ -19,7 +20,6 @@ CREATE TABLE IF NOT EXISTS area
     area_name VARCHAR(30) NOT NULL
 );
 
-
 CREATE TABLE IF NOT EXISTS resume
 (
     resume_id       SERIAL PRIMARY KEY,
@@ -27,8 +27,8 @@ CREATE TABLE IF NOT EXISTS resume
     FOREIGN KEY (user_account_id) REFERENCES user_account (user_account_id),
     area_id         INT,
     FOREIGN KEY (area_id) REFERENCES area (area_id),
-    vacancy         VARCHAR(30) NOT NULL,
-    create_date        TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    vacancy         VARCHAR(40) NOT NULL,
+    create_date     TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS employer
@@ -42,14 +42,15 @@ CREATE TABLE IF NOT EXISTS employer
 CREATE TABLE IF NOT EXISTS vacancy
 (
     vacancy_id         SERIAL PRIMARY KEY,
+    vacancy_name       VARCHAR(40) NOT NULL,
     employer_id        INT,
     FOREIGN KEY (employer_id) REFERENCES employer (employer_id),
     area_id            INT,
     FOREIGN KEY (area_id) REFERENCES area (area_id),
     compensation_from  INT,
     compensation_to    INT,
-    compensation_gross BOOLEAN NOT NULL,
-    create_date        TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    compensation_gross BOOLEAN     NOT NULL,
+    create_date        TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS response
@@ -62,5 +63,4 @@ CREATE TABLE IF NOT EXISTS response
     apply_date    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     response_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     response_flag INT       NOT NULL
-
 );
