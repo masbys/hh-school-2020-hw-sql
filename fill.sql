@@ -17,6 +17,7 @@ INSERT INTO area (area_name)
 VALUES ('Skaramangás'),
        ('Ostuncalco'),
        ('Dois Vizinhos'),
+       ('Moscow'),
        ('Socabaya');
 
 INSERT INTO resume (user_account_id, area_id, vacancy, create_date)
@@ -55,35 +56,21 @@ VALUES ('Quaxo', 1),
 
 INSERT INTO vacancy (vacancy_name, employer_id, area_id, compensation_from, compensation_to, compensation_gross,
                      create_date)
-VALUES ('Software Test Engineer I', 1, 1, 8616.45, 39088.81, true, '2020-01-22 19:18:18'),
-    create_date)
-    ('Mechanical Systems Engineer', 2, 2, 3477.56, 45049.31, true, '2020-11-24 22:17:31'),
-    create_date)
-    ('Director of Sales', 3, 3, 1540.24, 5056.71, false, '2020-06-07 16:55:08'),
-    create_date)
-    ('General Manager', 4, 4, 2924.85, 33608.19, true, '2020-10-20 23:36:50'),
-    create_date)
-    ('Help Desk Operator', 5, 5, 7717.00, 46786.89, false, '2020-08-06 13:02:57'),
-    create_date)
-    ('Community Outreach Specialist', 1, 1, 3891.00, 11422.85, true, '2020-03-21 00:02:04'),
-    create_date)
-    ('Electrical Engineer', 2, 2, 2956.63, 48353.05, true, '2020-01-05 07:31:22'),
-    create_date)
-    ('Programmer Analyst I', 3, 3, 6360.49, 25724.93, true, '2020-05-12 07:08:01'),
-    create_date)
-    ('Graphic Designer', 4, 4, 5428.88, 31784.41, true, '2020-08-27 02:23:41'),
-    create_date)
-    ('Structural Engineer', 5, 5, 9169.62, 40467.53, false, '2020-01-29 00:42:12'),
-    create_date)
-    ('Business Systems Development Analyst', 1, 1, 3140.75, 23693.54, true, '2020-07-28 09:22:04'),
-    create_date)
-    ('Account Representative I', 2, 2, 1946.43, 20242.04, false, '2020-08-24 12:49:56'),
-    create_date)
-    ('Structural Analysis Engineer', 3, 3, 9527.62, 20714.86, false, '2020-01-26 01:41:52'),
-    create_date)
-    ('Administrative Assistant IV', 4, 4, 5566.13, 10306.50, true, '2020-05-24 01:42:06'),
-    create_date)
-    ('Social Worker', 5, 5, 8950.71, 10210.76, false, '2020-05-07 06:31:03');
+VALUES ('Software Test Engineer I', 1, 1, NULL, 39088.81, true, '2020-01-22 19:18:18'),
+       ('Mechanical Systems Engineer', 2, 2, 3477.56, 45049.31, true, '2020-11-24 22:17:31'),
+       ('Director of Sales', 3, 3, NULL, NULL, false, '2020-06-07 16:55:08'),
+       ('General Manager', 4, 4, 2924.85, 33608.19, true, '2020-10-20 23:36:50'),
+       ('Help Desk Operator', 5, 5, 7717.00, 46786.89, false, '2020-08-06 13:02:57'),
+       ('Community Outreach Specialist', 1, 1, 3891.00, NULL, true, '2020-03-21 00:02:04'),
+       ('Electrical Engineer', 2, 2, 2956.63, 48353.05, true, '2020-01-05 07:31:22'),
+       ('Programmer Analyst I', 3, 3, 6360.49, 25724.93, true, '2020-05-12 07:08:01'),
+       ('Graphic Designer', 4, 4, NULL, NULL, true, '2020-08-27 02:23:41'),
+       ('Structural Engineer', 5, 5, 9169.62, 40467.53, false, '2020-01-29 00:42:12'),
+       ('Business Systems Development Analyst', 1, 1, 3140.75, 23693.54, true, '2020-07-28 09:22:04'),
+       ('Account Representative I', 2, 2, 1946.43, 20242.04, false, '2020-08-24 12:49:56'),
+       ('Structural Analysis Engineer', 3, 3, 9527.62, 20714.86, false, '2020-01-26 01:41:52'),
+       ('Administrative Assistant IV', 4, 4, NULL, 10306.50, true, '2020-05-24 01:42:06'),
+       ('Social Worker', 5, 5, NULL, NULL, false, '2020-05-07 06:31:03');
 
 INSERT INTO response (resume_id, vacancy_id, apply_date, response_date, response_flag)
 VALUES (11, 11, '2020-05-06 15:22:56', '2020-11-24 17:00:29', 1),
