@@ -43,6 +43,14 @@ from (
 limit 5;
 
 --6. Вывести медианное количество вакансий на компанию. Использовать percentile_cont.
-
+SELECT percentile_cont(0.5) WITHIN GROUP ( ORDER BY vacancy_count) AS mediana
+FROM (
+    SELECT
+           employer_id,
+           count(vacancy_id) as vacancy_count
+    from
+         employer join vacancy using (employer_id)
+    group by employer_id
+    ) t;
 
 --7. Вывести минимальное и максимальное время от создания вакансии до первого отклика для каждого города.
