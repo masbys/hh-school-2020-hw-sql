@@ -61,6 +61,6 @@ CREATE TABLE IF NOT EXISTS response
     vacancy_id    INT,
     FOREIGN KEY (vacancy_id) REFERENCES vacancy (vacancy_id),
     apply_date    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    response_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    response_flag INT       NOT NULL
+    response_date TIMESTAMP,
+    response_flag INT
 );
