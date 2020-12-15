@@ -10,7 +10,6 @@ LIMIT 10;
 
 --4. Вывести среднюю максимальную зарплату в вакансиях, среднюю минимальную и среднюю среднюю
 -- (compensation_to - compensation_from) в одном запросе. Значения должны быть указаны до вычета налогов.
-
 WITH compensation_gross_range AS (
     SELECT
     CASE
@@ -27,11 +26,19 @@ FROM vacancy)
 SELECT avg(compensation_from)                         AS min_avr,
        avg(compensation_to)                           AS max_avr,
        avg(compensation_to - compensation_from) AS avg_salary_range
-FROM compensation_gross_range
+FROM compensation_gross_range;
 
 --5. Вывести топ-5 компаний, получивших максимальное количество откликов на одну вакансию, в порядке убывания откликов.
 -- Если более 5 компаний получили одинаковое максимальное количество откликов, отсортировать по алфавиту и вывести только 5.
-
+SELECT e.employer_name,
+       count(response.vacancy_id) AS count_resp
+FROM response
+    INNER JOIN vacancy v on response.vacancy_id = v.vacancy_id
+    INNER JOIN employer e on v.employer_id = e.employer_id
+WHERE response_flag = 1
+GROUP BY  e.employer_name
+ORDER BY count_resp DESC,  e.employer_name ASC
+LIMIT 5;
 
 --6. Вывести медианное количество вакансий на компанию. Использовать percentile_cont.
 
