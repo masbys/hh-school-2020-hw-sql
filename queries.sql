@@ -2,8 +2,8 @@
 -- первых 10 вакансий у которых не указана зарплата, сортировать по дате создания вакансии от новых к более старым.
 SELECT vacancy_name, a.area_name, e.employer_name
 FROM vacancy v
-         INNER JOIN area a using (area_id)
-         INNER JOIN employer e ON v.employer_id = e.employer_id
+         INNER JOIN area a USING (area_id)
+         INNER JOIN employer e USING (employer_id)
 WHERE (compensation_from IS NULL AND compensation_to IS NULL)
 ORDER BY create_date DESC
 LIMIT 10;
@@ -30,27 +30,36 @@ FROM compensation_gross_range;
 --5. Вывести топ-5 компаний, получивших максимальное количество откликов на одну вакансию, в порядке убывания откликов.
 -- Если более 5 компаний получили одинаковое максимальное количество откликов, отсортировать по алфавиту и вывести только 5.
 SELECT distinct employer_name
-from (
+FROM (
          SELECT employer_name,
                 vacancy_id,
                 count(response_id) AS count_resp
          FROM vacancy
-                  INNER JOIN response using (vacancy_id)
-                  INNER JOIN employer using (employer_id)
+                  INNER JOIN response USING (vacancy_id)
+                  INNER JOIN employer USING (employer_id)
          GROUP BY employer_name, vacancy_id
          ORDER BY count_resp DESC, employer_name ASC
      ) t
-limit 5;
+LIMIT 5;
 
 --6. Вывести медианное количество вакансий на компанию. Использовать percentile_cont.
-SELECT percentile_cont(0.5) WITHIN GROUP ( ORDER BY vacancy_count) AS mediana
+SELECT percentile_cont(0.5) WITHIN GROUP (ORDER BY vacancy_count) AS mediana
 FROM (
-    SELECT
-           employer_id,
-           count(vacancy_id) as vacancy_count
-    from
-         employer join vacancy using (employer_id)
-    group by employer_id
-    ) t;
+         SELECT employer_id,
+                count(vacancy_id) AS vacancy_count
+         FROM employer
+                  JOIN vacancy USING (employer_id)
+         GROUP BY employer_id
+     ) t;
 
 --7. Вывести минимальное и максимальное время от создания вакансии до первого отклика для каждого города.
+
+SELECT a.area_id,
+       min(r.apply_date - v.create_date) AS min_days,
+       max(r.apply_date - v.create_date) AS max_days
+FROM response r
+         JOIN vacancy v USING (vacancy_id)
+         JOIN employer e USING (employer_id)
+         JOIN area a USING (area_id)
+GROUP BY e.area_id
+ORDER BY e.area_id
