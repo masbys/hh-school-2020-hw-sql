@@ -54,12 +54,11 @@ FROM (
 
 --7. Вывести минимальное и максимальное время от создания вакансии до первого отклика для каждого города.
 
-SELECT a.area_id,
-       min(r.apply_date - v.create_date) AS min_days,
-       max(r.apply_date - v.create_date) AS max_days
+SELECT area_name,
+       min(r.apply_date - v.create_date) AS min_diff,
+       max(r.apply_date - v.create_date) AS max_diff
 FROM response r
          JOIN vacancy v USING (vacancy_id)
-         JOIN employer e USING (employer_id)
          JOIN area a USING (area_id)
-GROUP BY e.area_id
-ORDER BY e.area_id
+GROUP BY area_id, area_name
+ORDER BY area_name
