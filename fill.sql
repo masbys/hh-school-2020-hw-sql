@@ -21,21 +21,21 @@ VALUES ('Skaramangás'),
        ('Socabaya');
 
 INSERT INTO resume (user_account_id, area_id, vacancy, create_date)
-VALUES (1, 1, 'Software Consultant', '2019-06-21 11:00:01'),
-       (2, 2, 'Civil Engineer', '2019-05-29 11:44:15'),
-       (3, 3, 'Business Systems Development Analyst', '2019-09-11 08:03:43'),
-       (4, 4, 'Structural Engineer', '2019-09-04 02:27:59'),
-       (5, 5, 'Recruiting Manager', '2019-06-04 06:54:46'),
-       (6, 1, 'Technical Writer', '2019-06-17 02:46:05'),
-       (7, 2, 'Biostatistician III', '2019-08-29 21:29:05'),
-       (8, 3, 'Web Developer II', '2019-12-02 06:54:40'),
-       (9, 4, 'Structural Analysis Engineer', '2019-01-18 16:38:42'),
-       (10, 5, 'Research Nurse', '2019-09-21 07:07:46'),
-       (1, 1, 'VP Sales', '2019-05-04 16:49:37'),
-       (1, 5, 'Help Desk Technician', '2019-09-05 07:34:59'),
-       (3, 2, 'Information Systems Manager', '2019-12-03 22:55:43'),
-       (3, 1, 'Operator', '2019-12-29 10:27:26'),
-       (3, 4, 'Senior Sales Associate', '2019-02-08 00:40:41');
+VALUES (1, 1, 'Software Consultant', '2018-06-21 11:00:01'),
+       (2, 2, 'Civil Engineer', '2018-05-29 11:44:15'),
+       (3, 3, 'Business Systems Development Analyst', '2018-09-11 08:03:43'),
+       (4, 4, 'Structural Engineer', '2018-09-04 02:27:59'),
+       (5, 5, 'Recruiting Manager', '2018-06-04 06:54:46'),
+       (6, 1, 'Technical Writer', '2018-06-17 02:46:05'),
+       (7, 2, 'Biostatistician III', '2018-08-29 21:29:05'),
+       (8, 3, 'Web Developer II', '2018-12-02 06:54:40'),
+       (9, 4, 'Structural Analysis Engineer', '2018-01-18 16:38:42'),
+       (10, 5, 'Research Nurse', '2018-09-21 07:07:46'),
+       (1, 1, 'VP Sales', '2018-05-04 16:49:37'),
+       (1, 5, 'Help Desk Technician', '2018-09-05 07:34:59'),
+       (3, 2, 'Information Systems Manager', '2018-12-03 22:55:43'),
+       (3, 1, 'Operator', '2018-12-29 10:27:26'),
+       (3, 4, 'Senior Sales Associate', '2018-02-08 00:40:41');
 
 INSERT INTO employer (employer_name, area_id)
 VALUES ('Quaxo', 1),

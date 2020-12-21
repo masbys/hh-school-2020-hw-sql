@@ -53,7 +53,6 @@ FROM (
      ) t;
 
 --7. Вывести минимальное и максимальное время от создания вакансии до первого отклика для каждого города.
-
 SELECT area_name,
        min(r.apply_date - v.create_date) AS min_diff,
        max(r.apply_date - v.create_date) AS max_diff
