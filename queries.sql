@@ -31,15 +31,15 @@ FROM compensation_gross_range;
 -- Если более 5 компаний получили одинаковое максимальное количество откликов, отсортировать по алфавиту и вывести только 5.
 SELECT distinct employer_name
 FROM (
-         SELECT employer_name,
+         SELECT employer_id,
                 vacancy_id,
                 count(response_id) AS count_resp
          FROM vacancy
-                  INNER JOIN response USING (vacancy_id)
-                  INNER JOIN employer USING (employer_id)
-         GROUP BY employer_name, vacancy_id
-         ORDER BY count_resp DESC, employer_name ASC
+                  LEFT JOIN response USING (vacancy_id)
+         GROUP BY employer_id, vacancy_id
+         ORDER BY count_resp DESC, employer_id ASC
      ) t
+         INNER JOIN employer USING (employer_id)
 LIMIT 5;
 
 --6. Вывести медианное количество вакансий на компанию. Использовать percentile_cont.
@@ -53,11 +53,19 @@ FROM (
      ) t;
 
 --7. Вывести минимальное и максимальное время от создания вакансии до первого отклика для каждого города.
+
 SELECT area_name,
-       min(r.apply_date - v.create_date) AS min_diff,
-       max(r.apply_date - v.create_date) AS max_diff
-FROM response r
-         JOIN vacancy v USING (vacancy_id)
-         JOIN area a USING (area_id)
+       min(first_resp_diff) AS min_diff,
+       max(first_resp_diff) AS max_diff
+FROM (
+         SELECT area_id,
+                area_name,
+                vacancy_id,
+                min(r.apply_date - v.create_date) AS first_resp_diff
+         FROM response r
+                  JOIN vacancy v USING (vacancy_id)
+                  JOIN area a USING (area_id)
+         GROUP BY area_id, vacancy_id, area_name
+     ) t
 GROUP BY area_id, area_name
-ORDER BY area_name
+
